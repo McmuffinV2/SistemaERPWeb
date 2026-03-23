@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard ERP | Sistema Premium</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body style="align-items: flex-start; justify-content: flex-start;">
+    <div class="blob-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <h2>ERP System</h2>
+            </header>
+            <nav class="nav-links">
+                <div class="nav-item">
+                    <a href="#" class="nav-link active" data-target="view-dashboard">
+                        <span>Panel General</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-target="view-inventario">
+                        <span>Inventario</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-target="view-ventas">
+                        <span>Ventas</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-target="view-clientes">
+                        <span>Clientes</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-target="view-configuracion">
+                        <span>Configuración</span>
+                    </a>
+                </div>
+            </nav>
+            <footer class="sidebar-footer">
+                <a href="index.html" class="nav-link">
+                    <span>Cerrar Sesión</span>
+                </a>
+            </footer>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1 id="page-title">Bienvenido, Ignacio</h1>
+                <div class="user-profile">
+                    <span>Ignacio G.</span>
+                </div>
+            </header>
+
+            <!-- Sección: Dashboard -->
+            <section id="view-dashboard" class="content-view active">
+                <div class="metrics-grid">
+                    <div class="stat-card">
+                        <span class="label">Ventas Totales</span>
+                        <span class="value">$12,450.00</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="label">Nuevos Clientes</span>
+                        <span class="value">24</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="label">Stock Bajo</span>
+                        <span class="value">8 productos</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="label">Órdenes Pendientes</span>
+                        <span class="value">5</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-section">
+                    <h3 style="color: var(--text-muted); margin-bottom: 20px;">Resumen de Actividad</h3>
+                    <p style="color: var(--text-muted);">Aquí se mostrará el contenido principal de tu ERP...</p>
+                </div>
+            </section>
+
+            <!-- Sección: Inventario -->
+            <section id="view-inventario" class="content-view">
+                <div class="dashboard-section">
+                    <h2>Inventario de Productos</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 30px;">Gestiona tus productos y niveles de stock.</p>
+                    
+                    <button class="btn-primary" style="width: auto; padding: 10px 20px; font-size: 0.9rem;">+ Nuevo Producto</button>
+                    <!-- Aquí iría la tabla de productos -->
+                </div>
+            </section>
+
+            <!-- Sección: Ventas -->
+            <section id="view-ventas" class="content-view">
+                <div class="dashboard-section">
+                    <h2>Registro de Ventas</h2>
+                    <p style="color: var(--text-muted);">Historial de transacciones y facturación.</p>
+                </div>
+            </section>
+
+            <!-- Sección: Clientes -->
+            <section id="view-clientes" class="content-view">
+                <div class="dashboard-section">
+                    <h2>Base de Datos de Clientes</h2>
+                    <p style="color: var(--text-muted);">Información de contacto y fidelización.</p>
+                </div>
+            </section>
+
+            <!-- Sección: Configuración -->
+            <section id="view-configuracion" class="content-view">
+                <div class="dashboard-section">
+                    <h2>Ajustes del Sistema</h2>
+                    <p style="color: var(--text-muted);">Configura las preferencias de tu ERP.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script para el ruteador SPA -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link[data-target]');
+            const views = document.querySelectorAll('.content-view');
+            const pageTitle = document.getElementById('page-title');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Obtener el ID de la vista destino
+                    const targetId = link.getAttribute('data-target');
+                    const targetText = link.querySelector('span').textContent;
+
+                    // Cambiar clase activa en los links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+
+                    // Cambiar vista activa con animación de desvanecimiento
+                    views.forEach(view => {
+                        view.classList.remove('active');
+                        if (view.id === targetId) {
+                            view.classList.add('active');
+                        }
+                    });
+
+                    // Actualizar título (opcional)
+                    if (targetId !== 'view-dashboard') {
+                        pageTitle.textContent = targetText;
+                    } else {
+                        pageTitle.textContent = 'Bienvenido, Ignacio';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
