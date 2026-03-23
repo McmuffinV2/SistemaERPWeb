@@ -6,13 +6,13 @@ const PROVIDERG = new GoogleAuthProvider('google.com');
 const PROVIDERM = new OAuthProvider('microsoft.com');
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCT0oTCfnMRKvhFjJiynDRZ4QiBC1BWA4A",
-    authDomain: "loginweb-e379e.firebaseapp.com",
-    projectId: "loginweb-e379e",
-    storageBucket: "loginweb-e379e.firebasestorage.app",
-    messagingSenderId: "876038280292",
-    appId: "1:876038280292:web:6bf7d42c502fdcbeca7b71",
-    measurementId: "G-GHS1C753CX"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
